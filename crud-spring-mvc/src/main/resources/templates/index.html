@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{fragments/main}"
+        lang="es">
+<head>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div th:replace="fragments/form::form"></div>
+        <div class="row mt-5">
+            <div class="col-md-12 mx-auto">
+                <table class="table table-hover table-bordered table-striped">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Document Number</th>
+                        <th>Birth Date</th>
+                        <th>Mobile Number</th>
+                        <th>Gender</th>
+                        <th>Operations</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="employee : ${employees}">
+                        <td th:text="${employee.firstName}"></td>
+                        <td th:text="${employee.lastName}"></td>
+                        <td th:text="${employee.documentNumber}"></td>
+                        <td th:text="${employee.birthDate}"></td>
+                        <td th:text="${employee.mobileNumber}"></td>
+                        <td th:text="${employee.gender}"></td>
+                        <td>
+                            <a th:href="@{'/edit/' + ${employee.id}}"  class="btn btn-secondary btn-sm">Edit</a>
+                            <a th:href="@{'/delete/' + ${employee.id}}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
